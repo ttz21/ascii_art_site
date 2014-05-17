@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>***ascii art***</title>
+    </head>
+
+    <style type="text/css">
+    h1 {
+	color: purple
+    }
+
+
+    body {
+        font-family: sans-serif; width: 800px; margin: 0 auto; padding: 10px; color: blue
+    }
+    error {
+        color: red;
+    }
+    label {
+        display: block; font-size: 16px; color: blue
+    }
+    input[type=text] {
+        width: 400px; font-size: 16px; padding: 2px;
+    }
+    textarea {
+        width: 400px; height: 200px; font-size: 16px; font-family: monospace;
+    }
+    input[type=submit] {
+        font-size: 12px;
+    }
+    hr {
+        margin: 20px auto;
+    }
+
+    .art + .art {
+        margin-top: 20px; 
+    }
+    .art-title {
+        font-weight: bold; font-size: 16px; color: purple
+    }
+    .art-body {
+        margin: 0; font-size: 16px; color: purple
+    }
+    .map {
+	position: absolute;
+	right: 240px;
+	top: 112px;
+    }
+
+	</style>
+
+
+    <body>
+        <h1>Welcome to my ASCII Art Page!</h1>
+
+        <form method="post">
+    		<label>
+        		<div>Name of your Masterpiece:</div> <input type="text" name="title" value= {{title}}>
+    		</label>
+    		<label>
+        		<div>Canvas:</div> <textarea name="art">{{art}}</textarea>
+    		</label>
+    		
+    		<div class="error"> {{error}}</div>
+
+    		<input type="submit">
+
+	</form>
+
+	{% if img_url %}
+	<img class="map" src={{img_url}}>
+	{% endif %}
+
+		<hr>
+
+		{% for art in arts %}
+    			<div class="art">
+        		<div class="art-title">{{art.title}}</div>
+        		<pre class="art-body">{{art.art}}</pre>
+   			</div>
+			<hr>
+    		{% endfor %}
+
+
+    </body>
+</html>
